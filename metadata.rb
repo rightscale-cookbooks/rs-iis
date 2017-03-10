@@ -17,3 +17,5 @@ version '0.1.0'
 # a Supermarket.
 #
 # source_url 'https://github.com/<insert_org_here>/rs-iis' if respond_to?(:source_url)
+depends 'iis'
+depends 'seven_zip'
