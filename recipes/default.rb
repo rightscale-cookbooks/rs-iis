@@ -8,15 +8,17 @@ include_recipe 'iis'
 include_recipe 'iis::mod_aspnet45'
 include_recipe 'iis::mod_auth_anonymous'
 include_recipe 'iis::mod_compress_static'
+include_recipe 'seven_zip'
+node.default['seven_zip']['syspath'] = true
 
-remote_file ::File.join(Chef::Config['file_cache_path'], 'BlogEngineNet33.zip') do
+remote_file "#{Chef::Config['file_cache_path']}\BlogEngineNet33.zip)" do
   source 'https://s3.amazonaws.com/rs-professional-services-publishing/tmp/BlogEngineNet33.zip'
   action :create
 end
 
 seven_zip_archive 'seven_zip_source' do
   path      'C:\BlogEngineNet33'
-  source    ::File.join(Chef::Config['file_cache_path'], 'BlogEngineNet33.zip')
+  source    "#{Chef::Config['file_cache_path']}\BlogEngineNet33.zip)"
   overwrite true
   timeout   30
 end
